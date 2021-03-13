@@ -8,7 +8,7 @@ class CircleContainer extends StatelessWidget {
   // utilizar assert es una buena práctica, para lanzar excepciones
   CircleContainer({@required this.child, @required this.height, @required this.width})
     : assert( child != null),
-      assert( width!= null && width>=100),
+      assert( width!= null && width>=50),
       assert( height != null);
 
   @override
