@@ -14,8 +14,8 @@ class CircleContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-            width: 300,
-            height: 300,
+            width: 80,
+            height: 80,
             alignment: Alignment.center,
             child: Center(child: this.child),
               decoration: BoxDecoration(

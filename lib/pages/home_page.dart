@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ui/widgets/circle_container.dart';
+import 'package:flutter/cupertino.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -10,9 +12,14 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: CircleContainer(
-          child:Text('Hola', style: TextStyle(fontSize: 50),),
+          child: SvgPicture.asset(
+            'assets/icons/lista.svg', 
+             width: 40, 
+             height: 40, 
+             color: Colors.blueAccent,
+            ),
           width: 100,
-          height: 4,
+          height: 100,
         )
       )      
     );
