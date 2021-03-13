@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui/widgets/avatar.dart';
 import 'package:ui/widgets/bottom_menu.dart';
 import 'package:ui/widgets/circle_container.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,6 +33,8 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: <Widget> [
+              Avatar(),
+              SizedBox(height: 20,),
               Text("Bienvenido"),
               Text("Steven Andrade Solórzano", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
               Text("Desarrrollador de Software"),
@@ -41,13 +44,20 @@ class HomePage extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical:20),
                 color: Colors.grey,
               ),
+              CupertinoButton(
+                child: Text("UPLOAD"),
+                color: Colors.blue,
+                minSize: 50,
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10 ),
+                onPressed: () => print("uploading"),
+              ),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircleContainer(child: Icon(Icons.add), width: 55, height: 55,),
+                  CircleContainer(child: Icon(Icons.add), size: 55,),
                   SizedBox(width: 20,),
-                  CircleContainer(child: Icon(Icons.remove), width: 55, height: 55,),
+                  CircleContainer(child: Icon(Icons.remove), size: 55),
               ],)
             ],
           )

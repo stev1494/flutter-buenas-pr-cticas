@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -27,15 +28,17 @@ class BottomMenu extends StatelessWidget {
             children: 
               List.generate(items.length, (index) {
                 final BottomMenuItem item = items[index];
-                return Column(
+                return CupertinoButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: (){},
+                  child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SvgPicture.asset(item.iconPath, width: 35,),
                     SizedBox(height: 3,),
-                    Text(item.label, style: TextStyle(fontSize:12 ),)
-
+                    Text(item.label, style: TextStyle(fontSize:12, color: Colors.black ),)
                   ],
-
+                ),
                 );
               })
           ),

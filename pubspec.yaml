@@ -52,6 +52,7 @@ flutter:
     - assets/icons/emoji.svg
     - assets/icons/home.svg
     - assets/icons/historial.svg
+    - assets/icons/user.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

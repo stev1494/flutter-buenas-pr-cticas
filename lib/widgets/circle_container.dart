@@ -3,19 +3,18 @@ import 'package:flutter/material.dart';
 class CircleContainer extends StatelessWidget {
 
   final Widget child;
-  final double width, height;
+  final double size;
 
   // utilizar assert es una buena práctica, para lanzar excepciones
-  CircleContainer({@required this.child, @required this.height, @required this.width})
+  CircleContainer({@required this.child, @required this.size})
     : assert( child != null),
-      assert( width!= null && width>=50),
-      assert( height != null);
+      assert( size!= null && size >=50);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-            width: 80,
-            height: 80,
+            width: size,
+            height: size,
             alignment: Alignment.center,
             child: Center(child: this.child),
               decoration: BoxDecoration(
