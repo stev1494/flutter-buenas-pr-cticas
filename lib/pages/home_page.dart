@@ -6,22 +6,16 @@ import 'package:flutter/cupertino.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-        return Scaffold(
-      appBar: AppBar(
-        title: Center(child: Text("Mi app")),
-      ),
-      body: Center(
-        child: CircleContainer(
-          child: SvgPicture.asset(
-            'assets/icons/lista.svg', 
-             width: 40, 
-             height: 40, 
-             color: Colors.blueAccent,
-            ),
-          width: 100,
-          height: 100,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        top: true,
+        bottom: true,
+        child: Container(
+          child: Text("Holaa"),
+          alignment: Alignment.bottomCenter,
         )
-      )      
+      )     
     );
   }
 }
