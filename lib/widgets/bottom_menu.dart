@@ -28,17 +28,22 @@ class BottomMenu extends StatelessWidget {
             children: 
               List.generate(items.length, (index) {
                 final BottomMenuItem item = items[index];
-                return CupertinoButton(
-                  padding: EdgeInsets.zero,
-                  onPressed: (){},
-                  child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SvgPicture.asset(item.iconPath, width: 35,),
-                    SizedBox(height: 3,),
-                    Text(item.label, style: TextStyle(fontSize:12, color: Colors.black ),)
-                  ],
-                ),
+                // El expanded, aumenta el rango de accción al clickear
+                return Expanded(
+                    child: Container(
+                    child: CupertinoButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: (){},
+                      child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SvgPicture.asset(item.iconPath, width: 35,),
+                        SizedBox(height: 3,),
+                        Text(item.label, style: TextStyle(fontSize:12, color: Colors.black ),)
+                      ],
+                    ),
+                    ),
+                  ),
                 );
               })
           ),

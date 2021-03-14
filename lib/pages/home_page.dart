@@ -4,6 +4,7 @@ import 'package:ui/widgets/bottom_menu.dart';
 import 'package:ui/widgets/circle_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:ui/widgets/cronometer.dart';
+import 'package:ui/widgets/my_appbar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -37,10 +38,15 @@ class _HomePageState extends State<HomePage> {
           width: double.infinity,
           color: Colors.white,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget> [
+            children: [
+              // appBar
+              MyAppBar(),
+              Expanded(
+                child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+              children: <Widget> [
               Avatar(),
               SizedBox(height: 20,),
               Text("Bienvenido"),
@@ -63,6 +69,9 @@ class _HomePageState extends State<HomePage> {
                 },
                 color: Colors.blue,
                 child: Text("Enabled: $_isEnabled"),
+              )
+            ],
+          )
               )
             ],
           )

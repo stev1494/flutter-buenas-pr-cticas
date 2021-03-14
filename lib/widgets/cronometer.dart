@@ -18,7 +18,7 @@ class CronometerState extends State<Cronometer> with AfterLayoutMixin{
   double _time;
   Timer _timer;
 
-  
+  // útil
   @override
   void afterFirstLayout(BuildContext context) {
     showDialog(context: context, builder: (BuildContext context){
