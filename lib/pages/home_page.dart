@@ -3,8 +3,16 @@ import 'package:ui/widgets/avatar.dart';
 import 'package:ui/widgets/bottom_menu.dart';
 import 'package:ui/widgets/circle_container.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:ui/widgets/cronometer.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool _isEnabled = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,21 +52,18 @@ class HomePage extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical:20),
                 color: Colors.grey,
               ),
+              _isEnabled == true ?
+                  Cronometer(initTime: 10.0, fontSize: 40.0,) :
+                  Container(),
               CupertinoButton(
-                child: Text("UPLOAD"),
+                onPressed: () {
+                  setState(() {
+                    _isEnabled = !_isEnabled;
+                  });
+                },
                 color: Colors.blue,
-                minSize: 50,
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10 ),
-                onPressed: () => print("uploading"),
-              ),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircleContainer(child: Icon(Icons.add), size: 55,),
-                  SizedBox(width: 20,),
-                  CircleContainer(child: Icon(Icons.remove), size: 55),
-              ],)
+                child: Text("Enabled: $_isEnabled"),
+              )
             ],
           )
         )

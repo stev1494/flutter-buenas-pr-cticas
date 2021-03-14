@@ -11,7 +11,7 @@ class Avatar extends StatelessWidget {
       color: Colors.white,
       child: Stack(
         children: [
-          SvgPicture.network('https://www.flaticon.es/svg/vstatic/svg/1177/1177568.svg?token=exp=1615675566~hmac=3c9c07b334ec03319bc71614adcefd25'),
+          SvgPicture.asset('assets/icons/user.svg'),
           Positioned(
             child: CircleContainer(
               child: Icon(Icons.edit),
