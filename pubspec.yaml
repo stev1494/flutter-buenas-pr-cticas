@@ -57,6 +57,7 @@ flutter:
     - assets/icons/back.svg
     - assets/icons/message.svg
     - assets/icons/camera.svg
+    - assets/icons/points.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

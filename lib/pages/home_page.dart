@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ui/pages/chat_page.dart';
 import 'package:ui/pages/image_page.dart';
+import 'package:ui/pages/posts_page.dart';
 import 'package:ui/widgets/avatar.dart';
 import 'package:ui/widgets/bottom_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:ui/widgets/cronometer.dart';
 import 'package:ui/widgets/my_appbar.dart';
+import 'package:ui/widgets/my_btn.dart';
 
 class HomePage extends StatefulWidget {
   static final routeName = 'home';
@@ -72,15 +74,20 @@ class _HomePageState extends State<HomePage> {
               _isEnabled == true ?
                   Cronometer(initTime: 10.0, fontSize: 40.0,) :
                   Container(),
-              CupertinoButton(
-                onPressed: () {
-                  setState(() {
-                    _isEnabled = !_isEnabled;
-                  });
-                },
-                color: Colors.blue,
-                child: Text("Enabled: $_isEnabled"),
-              ),
+              // CupertinoButton(
+              //   onPressed: () {
+              //     setState(() {
+              //       _isEnabled = !_isEnabled;
+              //     });
+              //   },
+              //   color: Colors.blue,
+              //   child: Text("Enabled: $_isEnabled"),
+              // ),
+              MyBtn(
+                label: 'My Posts',
+                onPressed: (){
+                  Navigator.pushNamed(context, PostsPage.routeName);
+                },)
             ],
           )
               )
