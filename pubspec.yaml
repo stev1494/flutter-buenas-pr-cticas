@@ -60,6 +60,8 @@ flutter:
     - assets/icons/message.svg
     - assets/icons/camera.svg
     - assets/icons/points.svg
+    - assets/icons/key.svg
+    - assets/icons/email.svg
     - assets/arbol.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
