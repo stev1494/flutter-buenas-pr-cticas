@@ -1,7 +1,7 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ui/pages/home_page.dart';
+import 'package:ui/pages/login_page.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class _SplashPageState extends State<SplashPage> with AfterLayoutMixin {
   @override
   void afterFirstLayout(BuildContext context) {
     Future.delayed(Duration(seconds: 2)).then((_) {
-      Navigator.pushReplacementNamed(context, HomePage.routeName);
+      Navigator.pushReplacementNamed(context, LoginPage.routeName);
     });
   }
 

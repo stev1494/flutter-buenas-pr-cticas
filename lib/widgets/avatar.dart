@@ -6,6 +6,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:ui/widgets/circle_container.dart';
 
 class Avatar extends StatefulWidget {
+  final double size;
+
+  const Avatar({Key key, this.size = 150}) : super(key: key);
   @override
   _AvatarState createState() => _AvatarState();
 }
@@ -26,9 +29,9 @@ class _AvatarState extends State<Avatar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
-      height: 200,
-      color: Colors.white,
+      width: widget.size,
+      height: widget.size,
+      color: Color(0xfff0f0f0),
       child: Stack(
         children: [
           _file == null 

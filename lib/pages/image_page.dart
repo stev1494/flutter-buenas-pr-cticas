@@ -36,30 +36,18 @@ class _ImagePageState extends State<ImagePage> {
               ),    
               // Expanded(child: Center(child: Text("${args.username} is active? ${args.isActive}"),)) 
               Expanded(
-                child: Center(
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: 300,
-                        height: 300,
-                        color: Colors.blue,
-                        child: Image.asset(
-                          'assets/arbol.jpg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Positioned(child: 
-                        Text('Steven', 
-                          style: TextStyle(
-                              fontSize: 30, 
-                              color: Colors.green),
-                        ), 
-                        right: 30, bottom: 40,
-                      )
-                    ],
-                  )
-                )
-              )         
+                child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
+                    itemBuilder: (_, index){
+                     return Container(
+                      color: Colors.black12,
+                      alignment: Alignment.center,
+                      child: Text("${index + 1}"),
+                     );
+                    },
+                    itemCount: 100,
+                ), 
+              ),         
             ],
           ),
         ),

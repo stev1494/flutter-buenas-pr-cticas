@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ui/pages/home_page.dart';
 import 'package:flutter/services.dart';
 import 'package:ui/pages/image_page.dart';
+import 'package:ui/pages/login_page.dart';
 import 'package:ui/pages/posts_page.dart';
 import 'package:ui/pages/splash_page.dart';
 
@@ -16,17 +17,25 @@ class MyApp extends StatelessWidget {
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'UI',
-      home: SplashPage(),
-      routes: {
-        ImagePage.routeName: (BuildContext context) => ImagePage(),
-        HomePage.routeName: (_) => HomePage(),
-        PostsPage.routeName: (_) =>PostsPage()
+    return GestureDetector(
+      // Esto lo hacemos para simular el comportamiento de cerrar teclados, como en iOS
+      onTap: () {
+        FocusScope.of(context).requestFocus(new FocusNode());
+
       },
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'UI',
+        home: SplashPage(),
+        routes: {
+          ImagePage.routeName: (BuildContext context) => ImagePage(),
+          HomePage.routeName: (_) => HomePage(),
+          PostsPage.routeName: (_) => PostsPage(),
+          LoginPage.routeName: (_) => LoginPage(),
+        },
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
       ),
     );
   }
