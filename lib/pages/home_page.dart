@@ -5,13 +5,9 @@ import 'package:ui/pages/page_home_tabs/history_tab.dart';
 import 'package:ui/pages/page_home_tabs/home_tab.dart';
 import 'package:ui/pages/page_home_tabs/more_tab.dart';
 import 'package:ui/pages/page_home_tabs/oferts_tab.dart';
-import 'package:ui/pages/posts_page.dart';
-import 'package:ui/widgets/avatar.dart';
 import 'package:ui/widgets/bottom_menu.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:ui/widgets/cronometer.dart';
 import 'package:ui/widgets/my_appbar.dart';
-import 'package:ui/widgets/my_btn.dart';
 import 'package:ui/widgets/my_page_view.dart';
 
 class HomePage extends StatefulWidget {
@@ -66,7 +62,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               MyAppBar(
                 rightIcon: 'assets/icons/message.svg',
-                leftIcon: 'assets/icons/camera.svg',
+                leftIcon: 'assets/icons/pick.svg',
                 onRightClick: (){
                   final route = MaterialPageRoute(builder: (BuildContext _)=> ChatPage(username: "Steven Andrade",));
                   Navigator.push(context, route);

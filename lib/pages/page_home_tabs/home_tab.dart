@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ui/widgets/avatar.dart';
-import 'package:ui/widgets/cronometer.dart';
-import 'package:ui/widgets/my_btn.dart';
 
-import '../posts_page.dart';
 
 class HomeTab extends StatefulWidget {
   @override
