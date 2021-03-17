@@ -98,4 +98,137 @@ class Dialogs {
     //  });
     return c.future;
   }
+
+
+  static void input(
+    BuildContext context, 
+    {
+      String label, 
+      String placeholder, 
+      @required void Function(String) onOk} 
+    ){
+    String text = '';
+
+    showCupertinoDialog(
+      context: context, 
+      builder: (_){
+       return CupertinoAlertDialog(
+        title: label != null ? Text(label) : null,
+        content: CupertinoTextField(
+          onChanged: (String _text){
+            text = _text;
+          },
+          placeholder: placeholder,
+        ),
+        actions: <Widget>[
+          CupertinoButton(
+            child: Text("Aceptar",),
+            onPressed: () {
+              Navigator.pop(context);
+              onOk(text);
+            }
+          )
+        ],
+      );
+    });
+  }
+
+  static void inputEmail(
+    BuildContext context, 
+    {
+      String label, 
+      String placeholder, 
+      @required void Function(String) onOk} 
+    ){
+    String text = '';
+
+    showCupertinoDialog(
+      context: context, 
+      builder: (_){
+       return CupertinoAlertDialog(
+         title: label != null ? Padding(
+           padding: const EdgeInsets.only(bottom:10),
+           child: Text(label),
+         ) : null,
+         content: InputEmail(placeholder: placeholder, onOk: (text){
+           if(onOk != null) {
+             onOk(text);
+           }
+         },),
+       );
+    });
+  }
+}
+
+class InputEmail extends StatefulWidget {
+  final String placeholder;
+  final void Function(String) onOk;
+
+  const InputEmail({Key key, this.placeholder,@required this.onOk}) : super(key: key);
+  @override
+  _InputEmailState createState() => _InputEmailState();
+}
+
+
+class _InputEmailState extends State<InputEmail> {
+
+  bool _validate(){
+   return _email.contains("@");
+  } 
+
+  String _email = '';
+
+  @override
+  Widget build(BuildContext context) {
+    final isValid = _validate();
+
+    return Container(
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CupertinoTextField(
+            onChanged: (String text){
+              _email = text;
+              _validate();
+              setState(() {
+                
+              });
+            },
+            placeholder: widget.placeholder,
+          ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center ,
+              children: [
+                Expanded(
+                  child: TextButton(
+                    onPressed: ()=> Navigator.pop(context), 
+                    child: Text(
+                      "Cancelar", 
+                      style: TextStyle(
+                        color: Colors.red),
+                      )
+                  )
+                ),
+
+                Expanded(
+                  child: TextButton(
+                    onPressed: isValid ? 
+                      () { 
+                        Navigator.pop(context);
+                        widget.onOk(_email); 
+                        }
+                      : null, 
+                  child: Text(
+                    "Aceptar",
+                    style: TextStyle(
+                      color: Colors.black38), )
+                    ),
+                ),
+              ],
+            )
+        ],
+      ),
+    );
+  }
 }
