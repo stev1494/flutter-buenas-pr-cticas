@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ui/pages/login_page.dart';
 import 'package:ui/utils/dialogs.dart';
@@ -60,6 +61,24 @@ class _MoreTabState extends State<MoreTab> {
                   ),      
                 ],
               )
+            ),
+            LeftRightIconButton(
+              leftIcon: 'assets/icons/email.svg',
+              rightContent: Text("stvn.piano@gmail.com", style: TextStyle(color: Color(0xffaaaaaa), fontFamily: 'Roboto'),),
+              label: 'Email',
+              onPressed: (){},
+            ),
+            LeftRightIconButton(
+              leftIcon: 'assets/icons/security.svg',
+              rightContent: SvgPicture.asset('assets/icons/right-arrow.svg', width: 20,),
+              label: 'Configuraciones de privacidad',
+              onPressed: (){},
+            ),
+            LeftRightIconButton(
+              leftIcon: 'assets/icons/bell.svg',
+              rightContent: Text("ACTIVADO",style: TextStyle(color: Color(0xffaaaaaa),letterSpacing: 0.5),),
+              label: 'Notificaciones Push',
+              onPressed: (){},
             ),
             LeftRightIconButton(
               leftIcon: 'assets/icons/logout.svg',

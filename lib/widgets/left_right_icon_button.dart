@@ -39,7 +39,7 @@ class LeftRightIconButton extends StatelessWidget {
                         label,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 16, color: Colors.black),
+                        style: TextStyle(fontSize: 16, color: Colors.black, fontStyle: FontStyle.italic),
                       ),
                     ),
                   ),

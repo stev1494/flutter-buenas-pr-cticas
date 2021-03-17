@@ -25,9 +25,7 @@ class MyAppBar extends StatelessWidget {
               width: 40,
             ),
           ),
-          Text("LOGO",
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-          ),
+          Image.network('https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo4.png', width: 170, color: Colors.blue,),
           CupertinoButton(
             onPressed: onRightClick,
             padding: EdgeInsets.all(15),

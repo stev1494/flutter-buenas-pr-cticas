@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           LoginPage.routeName: (_) => LoginPage(),
         },
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          fontFamily: 'Roboto'
         ),
       ),
     );
