@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ui/api/account_api.dart';
 import 'package:ui/widgets/avatar.dart';
+import 'package:ui/widgets/circle_container.dart';
 
 
 class HomeTab extends StatefulWidget {
@@ -12,110 +14,49 @@ class _HomeTabState extends State<HomeTab> {
   bool _isEnabled = false;
   int _currentPage = 0;
 
+  AccountApi _accountApi = AccountApi();
+  List<dynamic> _users = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _load();
+  }
+
+  _load() async {
+    final users = await _accountApi.getUsers();
+    setState(() {
+      _users.addAll(users);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      child: LayoutBuilder(
-        builder: (context, constraints){
-          return SingleChildScrollView(
-            child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              color: Color(0xfff0f0f0),
-              height: constraints.maxHeight * 0.5,
+    return ListView(
+      children: [
+      Container(
+        height: 110,
+        child: ListView.builder(
+          itemBuilder: (_, index){
+            final dynamic item = _users[index];
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Avatar(
-                    size: constraints.maxHeight * 0.25,
-                  ),
-                  SizedBox(height: 20,),
-                  Text("Bienvenido"),
-                  Text("Steven Andrade Solórzano", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                  Text("Desarrrollador de Software"),
-                  Container(
-                    height: 1,
-                    width: 100,
-                    margin: EdgeInsets.symmetric(vertical:20),
-                    color: Colors.grey,
-                  ),
+                children: <Widget> [
+                  Expanded(child: ClipOval(
+                    child: Image.network(item['avatar']),
+                  ),),
+                  Text(item['first_name'])
+                  
                 ],
-              )
-            ),
-            SizedBox(height: 10,),
-            Container(
-              height: 120,
-              child: ListView.builder(
-                itemBuilder: (_, index) {
-                  return Container(
-                    width: 120,
-                    height: 120,
-                    margin: EdgeInsets.all(5),
-                    color: Colors.black12,
-                  );
-                },
-                itemCount: 10,
-                scrollDirection: Axis.horizontal,
               ),
-            ),
-            SizedBox(height: 10,),
-            Container(
-              height: 120,
-              child: ListView.builder(
-                itemBuilder: (_, index) {
-                  return Container(
-                    width: 120,
-                    height: 120,
-                    margin: EdgeInsets.all(5),
-                    color: Colors.black12,
-                  );
-                },
-                itemCount: 10,
-                scrollDirection: Axis.horizontal,
-              ),
-            ),
-            SizedBox(height: 10,),
-            Container(
-              height: 120,
-              child: ListView.builder(
-                itemBuilder: (_, index) {
-                  return Container(
-                    width: 120,
-                    height: 120,
-                    margin: EdgeInsets.all(5),
-                    color: Colors.black12,
-                  );
-                },
-                itemCount: 10,
-                scrollDirection: Axis.horizontal,
-              ),
-            )
-            // _isEnabled == true ?
-            //     Cronometer(initTime: 10.0, fontSize: 40.0,) :
-            //     Container(),
-            //       CupertinoButton(
-            //         onPressed: () {
-            //           setState(() {
-            //             _isEnabled = !_isEnabled;
-            //           });
-            //         },
-            //         color: Colors.blue,
-            //         child: Text("Enabled: $_isEnabled"),
-            //       ),
-            // MyBtn(
-            //   label: 'My Posts',
-            //   onPressed: (){
-            //   Navigator.pushNamed(context, PostsPage.routeName);
-            //   },
-            // )
-          ],
-        ),
-          );
-        } ,     
+            );
+          },
+          itemCount: _users.length,
+          scrollDirection: Axis.horizontal,),
       ),
+      ],
     );
   }
 }

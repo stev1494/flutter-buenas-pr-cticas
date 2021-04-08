@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ui/pages/home_page.dart';
+import 'package:ui/api/account_api.dart';
 import 'package:ui/utils/dialogs.dart';
 import 'package:ui/widgets/my_btn.dart';
+
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   static final routeName = 'login';
@@ -15,8 +17,11 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
 
   FocusNode _focusNodePassword = FocusNode();
+  AccountApi _accountApi = AccountApi();
+
   GlobalKey<FormState> _formKey = GlobalKey();
   String _email = "", _password = "";
+  bool _isFectching = false;
 
   @override
   void dispose() {
@@ -26,10 +31,21 @@ class _LoginPageState extends State<LoginPage> {
 
   _submit() async {
     final bool isValid = _formKey.currentState.validate();
-    if(isValid && _email=='stvn.piano@gmail.com' && _password=='123456') {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setBool("wasLogin", true);
-      Navigator.pushReplacementNamed(context, HomePage.routeName);
+    if(isValid ) {
+      setState(() => _isFectching= true );
+
+      bool isOk = await _accountApi.login(_email, _password);
+      if(isOk) {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setBool("wasLogin", true);
+        Navigator.pushReplacementNamed(context, HomePage.routeName);
+      } else {
+        setState(() => _isFectching= false );
+        await Dialogs.alert(context,
+         title: "ERROR",
+         body: "Email o contraseña incorrectos");
+      }
+
     }else {
       await Dialogs.alert(context, title: "ERROR", body: "Email o contraseña incorrectos", okText: "Aceptar");
     }
@@ -59,7 +75,9 @@ class _LoginPageState extends State<LoginPage> {
 
     return Scaffold(
       body: SafeArea(
-        child: Container(
+        child: Stack(
+          children: [
+            Container(
           width: double.infinity,
           height: double.infinity,
           padding: EdgeInsets.symmetric(horizontal: 30),
@@ -105,6 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                       keyboardAppearance: Brightness.light,
                       textInputAction: TextInputAction.next,
                       validator: _validateEmail,
+                      initialValue: 'eve.holt@reqres.in',
                       onFieldSubmitted: (String text) {
                         FocusScope.of(context).requestFocus(_focusNodePassword);
                       } ,
@@ -129,6 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                       focusNode: _focusNodePassword,
                       textInputAction: TextInputAction.send,
                       validator: _validatePassword,
+                      initialValue: 'cityslicka',
                       onFieldSubmitted: (String text) {
                         _submit();
                       },
@@ -193,6 +213,17 @@ class _LoginPageState extends State<LoginPage> {
             )
           )
         ),
+        if(_isFectching)
+          Positioned.fill(child: Container(
+          color: Colors.white70,
+          child: Center(
+            child: CupertinoActivityIndicator(
+              radius: 15,
+            ),
+          ),
+        ))
+          ],
+        )
       ),
     );
   }
