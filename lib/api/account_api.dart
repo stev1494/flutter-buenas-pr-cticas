@@ -31,7 +31,7 @@ class AccountApi {
 
   Future<List<dynamic>> getUsers() async {
     try {
-      final http.Response response = await http.get(Uri.https(_url, 'api/users?page=2'));
+      final http.Response response = await http.get(Uri.https(_url, 'api/users'));
       
       if(response.statusCode == 200) {
         final parsed = jsonDecode(response.body);
